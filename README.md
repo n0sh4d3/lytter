@@ -1,48 +1,76 @@
-# lytter - network scanner (i fucking hate this project)
+# Lytter – Network Scanner
 
+**Lytter** is a terminal-based network scanning and device tracking tool with a clean TUI (text user interface).  
+It’s built to identify active devices on your local network, track them over time, and allow whitelisting of devices you don’t want to scan.
 
-## overview
+> ⚠️ **Disclaimer:** This project is experimental. It works most of the time, but occasional instability and unhandled edge cases may occur. Consider it a work in progress.
 
-this *thing* is supposed to scan your fucking network and find devices. maybe it will, maybe it won’t. i’ve poured, i don’t even know, hundreds of hours into this fucking bullshit and it’s somehow still not stable. if it decides to work, great. if not? don’t ask me why, because i don't know. it’s here, it does a thing, sometimes, and that's all you get.
+---
 
-## features
+## Overview
 
-- tui looks clean tho
-- scans your network for devices. might detect them. might not. 
-- displays ips and macs. sometimes. if the ui isn’t stuck in purgatory. 
-- tracks devices, but i wouldn’t bet on it actually showing you all the devices.
-- whitelists devices you don't wanna scan
-  
-## installation
+Lytter scans your network and attempts to detect connected devices in real-time.  
+It uses packet sniffing to gather IP and MAC addresses, displays them in a TUI, and saves device history for later analysis.  
+You can whitelist devices to skip in future scans.
 
-1. clone this damn thing.
-2. install the fucking dependencies:
+---
+
+## Features
+
+- Clean terminal UI (TUI)
+- Scans your network for active devices
+- Displays IP and MAC addresses in real-time
+- Tracks device history in `device_history.json`
+- Allows whitelisting of devices you want to skip
+- Configurable via `config.toml`
+
+---
+
+## Installation
+
+1. Clone the repository:
     ```bash
-    pip install -r requirements.tst
+    git clone https://github.com/n0sh4d3/lytter.git
+    cd lytter
     ```
-3. pray your system can even handle sniffing packets. 
+2. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3. Ensure your system supports packet sniffing (may require elevated privileges).
 
-## how to run
+---
 
+## Usage
+
+Run the scanner:
 ```bash
 python lytter.py
-```
+````
 
-it’ll start scanning your network. maybe you’ll see devices. maybe you won’t. it might even work for a minute, and then just randomly stop. don’t ask me why, i’ve given up.
-ui should refresh every second but what if it doesn’t? dunno, i just restart it and that's it.
+The UI will update every second with detected devices.
+If the UI freezes or becomes unresponsive, you can restart the tool.
 
-## configuration
+---
 
-1. got a `config.toml` file? sure. you can whitelist devices. 
-2. device history is saved in `device_history.json`. this file is more reliable than fucking tui.
+## Configuration
 
-## known issues
+* **`config.toml`** – Configure settings such as device whitelisting.
+* **`device_history.json`** – Stores historical scan data (more reliable than the live UI for long-term tracking).
 
-- the tui? it might update, it might not. sometimes it freezes.
-- devices *might* show up. or maybe they’ll be invisible. `device_history.json` is better way to see devices lol.
-- the whole fucking thing might just crash randomly because i’ve forgotten to handle some edge case that doesn’t even matter anymore. 
-- if you get an error? just restart it. maybe it’ll work next time. maybe it won’t.
-- i’m exhausted. i don’t care. you’re on your own.
+---
 
-## license
-this is open-source, so you can do whatever you want with it. fork it, break it, delete it. at this point, i don’t give a single shit.
+## Known Issues
+
+* The TUI may occasionally freeze or fail to refresh.
+* Some devices may not appear in the UI but will be recorded in `device_history.json`.
+* Occasional crashes due to unhandled edge cases.
+* Restarting the application usually resolves temporary issues.
+
+---
+
+## License
+
+This project is open-source.
+Feel free to fork, modify, or repurpose it for your own needs.
+
